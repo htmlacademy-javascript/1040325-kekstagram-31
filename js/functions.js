@@ -1,18 +1,18 @@
-function isStringLessOrEqual(string, maxLength) {
-  return string.length <= maxLength;
+function isStringLessOrEqual(str, maxLength) {
+  return str.length <= maxLength;
 }
 
 isStringLessOrEqual('проверяемая строка', 20);
 
-function isPalindrome(string) {
-  string = string.replaceAll(' ', '').toLowerCase();
-  const reverseString = string.split('').reverse().join('');
-  return string === reverseString;
+function isPalindrome(str) {
+  str = str.replaceAll(' ', '').toLowerCase();
+  const reverseString = str.split('').reverse().join('');
+  return str === reverseString;
 }
 
-function isPalindrome2(string) {
-  string = string.replaceAll(' ', '').toLowerCase();
-  const array = string.split('');
+function isPalindrome2(str) {
+  str = str.replaceAll(' ', '').toLowerCase();
+  const array = str.split('');
   for (let i = 0; i < Math.floor(array.length / 2) ; i++) {
     if (array[i] !== array.at(-1 - i)) {
       return false;
