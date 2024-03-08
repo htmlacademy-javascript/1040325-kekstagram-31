@@ -37,4 +37,3 @@ parseNumber('а я томат');
 parseNumber(2023);
 parseNumber(-1);
 parseNumber(1.5);
-
