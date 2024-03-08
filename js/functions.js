@@ -37,3 +37,24 @@ parseNumber('а я томат');
 parseNumber(2023);
 parseNumber(-1);
 parseNumber(1.5);
+
+function convertToMinutes(time) {
+  const [hours, minutes] = time.split(':').map(Number);
+
+  return hours * 60 + minutes;
+}
+
+function checkMeetingTime(workStart, workEnd, meetingStart, meetingDuration) {
+  const workStartInMinutes = convertToMinutes(workStart);
+  const workEndInMinutes = convertToMinutes(workEnd);
+  const meetingStartInMinutes = convertToMinutes(meetingStart);
+  const meetingEndInMinutes = meetingStartInMinutes + meetingDuration;
+
+  return workStartInMinutes <= meetingStartInMinutes && meetingEndInMinutes <= workEndInMinutes;
+}
+
+checkMeetingTime('08:00', '17:30', '14:00', 90);
+checkMeetingTime('8:0', '10:0', '8:0', 120);
+checkMeetingTime('08:00', '14:30', '14:00', 90);
+checkMeetingTime('14:00', '17:30', '08:0', 90);
+checkMeetingTime('8:00', '17:30', '08:00', 900);
