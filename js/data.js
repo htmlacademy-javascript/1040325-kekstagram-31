@@ -1,8 +1,7 @@
-//модуль создает данные
 import { descriptions, names, messages } from './constants.js';
 import {getRandomNumber, getRandomItem, getNumberGenerator} from './util.js';
 
-const getPhotoId = getNumberGenerator();
+const getPictureId = getNumberGenerator();
 const getCommentId = getNumberGenerator();
 
 function createNewComment() {
@@ -20,8 +19,8 @@ function createNewComment() {
   };
 }
 
-function createUserPhoto() {
-  const id = getPhotoId();
+function createUserPicture() {
+  const id = getPictureId();
   return {
     id: id,
     url: `photos/${id}.jpg`,
@@ -31,4 +30,4 @@ function createUserPhoto() {
   };
 }
 
-export {createUserPhoto};
+export {createUserPicture};
