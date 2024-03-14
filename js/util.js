@@ -12,4 +12,6 @@ function getRandomItem(arr) {
   return arr[getRandomNumber(0, arr.length - 1)];
 }
 
-export {getRandomNumber, getRandomItem, getNumberGenerator};
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export {getRandomNumber, getRandomItem, getNumberGenerator, isEscapeKey};
