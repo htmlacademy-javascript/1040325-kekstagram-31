@@ -1,7 +1,8 @@
-import {createUserPhoto} from './data.js';
+import {createUserPicture} from './data.js';
+import {renderPictures} from './renderPictures.js';
 
-const photosNumber = 25;
+const picturesNumber = 25;
 
-const photos = Array.from({ length: photosNumber }, createUserPhoto);
+const pictures = Array.from({ length: picturesNumber }, createUserPicture);
 
-console.log(photos); //eslint-disable-line
+renderPictures(pictures);
