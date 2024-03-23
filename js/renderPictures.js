@@ -1,10 +1,14 @@
+import { showBigPicture } from './showFullSizePicture';
+
 const picturesList = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const picuresListFragment = document.createDocumentFragment();
 
 function renderPictures(pictures) {
-  pictures.forEach(({url, description, likes, comments}) => {
+  pictures.forEach((picture) => {
+    const { url, description, likes, comments } = picture;
     const pictureElement = pictureTemplate.cloneNode(true);
+
     const pictureImg = pictureElement.querySelector('.picture__img');
     const pictureInfo = pictureElement.querySelector('.picture__info');
     const pictureComment = pictureInfo.querySelector('.picture__comments');
@@ -14,6 +18,8 @@ function renderPictures(pictures) {
     pictureImg.alt = description;
     pictureComment.textContent = comments.length;
     pictureLikes.textContent = likes;
+
+    pictureElement.addEventListener('click', () => showBigPicture(picture));
 
     picuresListFragment.appendChild(pictureElement);
   });
