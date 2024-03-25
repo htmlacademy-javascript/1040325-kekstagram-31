@@ -1,5 +1,6 @@
 import {createUserPicture} from './data.js';
 import {renderPictures} from './renderPictures.js';
+import './pictureUploadForm.js';
 
 const picturesNumber = 25;
 
