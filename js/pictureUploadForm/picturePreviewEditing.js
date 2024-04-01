@@ -48,7 +48,7 @@ function picturePreviewEditing(form) {
 
   effectValueInput.value = 0;
 
-  noUiSlider.create(sliderElement, noUiSliderSettings.chrome.sliderOptions);
+  noUiSlider.create(sliderElement, { range: { min: 0, max: 1 }, start: 0, connect: 'lower', });
 
   sliderElement.dataset.selectedFilter = 'none';
   sliderContainer.style.display = 'none';
@@ -73,7 +73,6 @@ function picturePreviewEditing(form) {
 
   sliderElement.noUiSlider.on('update', () => {
     const value = sliderElement.noUiSlider.get();
-
     effectValueInput.value = value;
     previewPicture.style.filter = noUiSliderSettings[sliderElement.dataset.selectedFilter]?.getFilterValue(value);
   });
