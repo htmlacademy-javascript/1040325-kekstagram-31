@@ -1,9 +1,8 @@
-import {createUserPicture} from './data.js';
 import {renderPictures} from './renderPictures.js';
 import './pictureUploadForm';
+import {api} from './api.js';
+import {showGetPicturesError} from './notifications.js';
 
-const picturesNumber = 25;
-
-const pictures = Array.from({ length: picturesNumber }, createUserPicture);
-
-renderPictures(pictures);
+api.getPictures()
+  .then((pictures) => renderPictures(pictures))
+  .catch(() => showGetPicturesError());

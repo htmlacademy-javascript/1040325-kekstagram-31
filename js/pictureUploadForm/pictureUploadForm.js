@@ -1,47 +1,77 @@
-import { isEscapeKey } from '../util.js';
 import { picturePreviewEditing } from './picturePreviewEditing.js';
 import { createFormValidator } from './createFormValidator.js';
+import { api } from '../api.js';
+import { showUploadFormNotification } from '../notifications.js';
+import { createHotkey } from '../hotkeyHandler.js';
 
 const formElement = document.querySelector('.img-upload__form');
 const imgUploadInput = formElement.querySelector('.img-upload__input');
 const imgEditingForm = formElement.querySelector('.img-upload__overlay');
 const cancelButton = formElement.querySelector('.img-upload__cancel');
 const addDescriptionForm = formElement.querySelector('.img-upload__text');
+const firstEffect = document.getElementById('effect-none');
+const submitButton = formElement.querySelector('.img-upload__submit');
+
 
 const validator = createFormValidator(formElement);
 
-picturePreviewEditing(formElement);
+const {resetSlider} = picturePreviewEditing(formElement);
+
+function resetForm() {
+  resetSlider();
+  formElement.reset();
+}
 
 formElement.addEventListener('submit', (evt) => {
-  if(!validator.validate()) {
-    evt.preventDefault();
+  evt.preventDefault();
+
+  if(validator.validate()) {
+    const formData = new FormData(evt.target);
+    submitButton.disabled = true;
+    api.postForm(formData)
+      .then(() => {
+        showUploadFormNotification('success');
+        resetForm();
+        closePictureUploadForm();
+      })
+      .catch(() => {
+        showUploadFormNotification('error');
+      })
+      .finally(() => {
+        submitButton.disabled = false;
+      });
   }
 });
 
-function escapeHandler(evt) {
-  if(isEscapeKey(evt)) {
-    evt.preventDefault();
-    const isInputFocused = Array.from(
-      addDescriptionForm.querySelectorAll('input,textarea')
-    ).every((elem) => document.activeElement !== elem);
 
-    if(isInputFocused) {
-      closePictureUploadForm();
-    }
+function escapeHandler() {
+  const isInputFocused = Array.from(
+    addDescriptionForm.querySelectorAll('input,textarea')
+  ).every((elem) => document.activeElement !== elem);
+
+  if(isInputFocused) {
+    closePictureUploadForm();
   }
 }
+
+let escHotkey;
 
 function openPictureUploadForm() {
   imgEditingForm.classList.remove('hidden');
   document.body.classList.add('modal-open');
-  document.addEventListener('keydown', escapeHandler);
+  escHotkey = createHotkey({
+    key: 'Escape',
+    handler: escapeHandler,
+  });
+  firstEffect.focus();
 }
 
 function closePictureUploadForm() {
   imgUploadInput.value = '';
   imgEditingForm.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  document.removeEventListener('keydown', escapeHandler);
+  resetForm();
+  escHotkey.destroy();
 }
 
 imgUploadInput.addEventListener('change', () => openPictureUploadForm());

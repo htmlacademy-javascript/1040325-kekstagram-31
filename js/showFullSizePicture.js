@@ -1,6 +1,7 @@
-import {isEscapeKey} from './util.js';
+import { createHotkey } from './hotkeyHandler.js';
 
 const bigPicture = document.querySelector('.big-picture');
+const bigPictureOverlay = document.querySelector('.big-picture.overlay');
 const closeButton = bigPicture.querySelector('.big-picture__cancel');
 const commentsList = document.querySelector('.social__comments');
 const commentTemplate = commentsList.querySelector('.social__comment');
@@ -11,6 +12,12 @@ const commentsPerPage = 5;
 let commentsToShow = [];
 let commentsCounter = 0;
 clearCommentsList();
+
+function clickOutOfPictireHandler(evt) {
+  if(!evt.target.closest('.big-picture__preview')) {
+    closeModal();
+  }
+}
 
 function addComment(comment) {
   const newComment = commentTemplate.cloneNode(true);
@@ -53,23 +60,27 @@ function clearCommentsList() {
   commentsCountElement.textContent = 0;
 }
 
-function escapeHandler(evt) {
-  if(isEscapeKey(evt)) {
-    evt.preventDefault();
-    hideBigPicture();
-  }
+function escapeHandler() {
+  hideBigPicture();
 }
+
+let escHotkey;
 
 function openModal() {
   document.body.classList.add('modal-open');
   bigPicture.classList.remove('hidden');
-  document.addEventListener('keydown', escapeHandler);
+  escHotkey = createHotkey({
+    key: 'Escape',
+    handler: escapeHandler,
+  });
+  bigPictureOverlay.addEventListener('click', clickOutOfPictireHandler);
 }
 
 function closeModal() {
   document.body.classList.remove('modal-open');
   bigPicture.classList.add('hidden');
-  document.removeEventListener('keydown', escapeHandler);
+  escHotkey.destroy();
+  bigPictureOverlay.removeEventListener('click', clickOutOfPictireHandler);
 }
 
 function showBigPicture(picture) {
