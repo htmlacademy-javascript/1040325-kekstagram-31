@@ -48,7 +48,7 @@ function picturePreviewEditing(form) {
 
   effectValueInput.value = 0;
 
-  noUiSlider.create(sliderElement, { range: { min: 0, max: 1 }, start: 0, connect: 'lower', });
+  noUiSlider.create(sliderElement, noUiSliderSettings.default.sliderOptions);
 
   sliderElement.dataset.selectedFilter = 'none';
   sliderContainer.style.display = 'none';
@@ -76,6 +76,17 @@ function picturePreviewEditing(form) {
     effectValueInput.value = value;
     previewPicture.style.filter = noUiSliderSettings[sliderElement.dataset.selectedFilter]?.getFilterValue(value);
   });
+
+  function resetSlider() {
+    sliderElement.noUiSlider.updateOptions(noUiSliderSettings.default.sliderOptions);
+    previewPicture.style.filter = 'none';
+    sliderElement.dataset.selectedFilter = 'none';
+    sliderContainer.style.display = 'none';
+  }
+
+  return {
+    resetSlider
+  };
 }
 
 export {picturePreviewEditing};
