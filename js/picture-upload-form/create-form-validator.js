@@ -1,10 +1,10 @@
 function validateMaxWordNumber(value, max) {
-  return value.trim().split(' ').length <= max;
+  return value.trim().split(/ +/).length <= max;
 }
 
 function validateRepeatHashtag(value) {
   const valueLowerCase = value.toLowerCase();
-  return valueLowerCase.split(' ').every((elem, idx, array) => array.indexOf(elem) === idx);
+  return valueLowerCase.split(/ +/).every((elem, idx, array) => array.indexOf(elem) === idx);
 }
 
 Pristine.addValidator('max-word-number', validateMaxWordNumber, 'Количество слов должно быть меньше ${1}'); //eslint-disable-line
@@ -18,7 +18,7 @@ function createFormValidator(form) {
   commentInput.dataset.pristineMaxlengthMessage = 'Максимальная длина комментария 140 символов';
   hashtagInput.dataset.pristineMaxWordNumber = '5';
   hashtagInput.dataset.pristineUnicArrayElem = 'Хэштеги';
-  hashtagInput.dataset.pristinePattern = /^(#[a-zа-яё0-9]{1,19} ?)*$/i;
+  hashtagInput.dataset.pristinePattern = /^(#[a-zа-яё0-9]{1,19} *)*$/i;
   hashtagInput.dataset.pristinePatternMessage = 'Некоректное значение хэштега';
 
   return new Pristine(form, {

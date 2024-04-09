@@ -8,7 +8,7 @@ const commentTemplate = commentsList.querySelector('.social__comment');
 const commentsLoaderButton = bigPicture.querySelector('.comments-loader');
 const commentsCountElement = bigPicture.querySelector('.social__comment-shown-count');
 
-const commentsPerPage = 5;
+const COMMENTS_PER_PAGE = 5;
 let commentsToShow = [];
 let commentsCounter = 0;
 clearCommentsList();
@@ -36,7 +36,7 @@ function updateBigPictureElement(picture) {
 }
 
 function showNextCommentsPage() {
-  for (let i = 0; i < commentsPerPage; i++) {
+  for (let i = 0; i < COMMENTS_PER_PAGE; i++) {
     if (commentsToShow.length > 0) {
       addComment(commentsToShow.shift());
     }

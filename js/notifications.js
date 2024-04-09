@@ -6,7 +6,7 @@ function showGetPicturesError() {
 
   document.body.appendChild(errorElement);
 
-  setTimeout(() => errorElement.remove(), 5000);
+  setTimeout(() => errorElement.remove(), 500);
 }
 
 function showUploadFormNotification(result) {
