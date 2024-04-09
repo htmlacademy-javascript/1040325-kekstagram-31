@@ -1,10 +1,21 @@
-import { showBigPicture } from './showFullSizePicture';
+import { showBigPicture } from './showBigPicture';
 
 const picturesList = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const picuresListFragment = document.createDocumentFragment();
+const filters = document.querySelector('.img-filters');
+
+function clearPicturesList() {
+  const pictureElements = document.querySelector('.pictures').querySelectorAll('.picture');
+  if(pictureElements.length) {
+    pictureElements.forEach((pic) => {
+      pic.remove();
+    });
+  }
+}
 
 function renderPictures(pictures) {
+  clearPicturesList();
   pictures.forEach((picture) => {
     const { url, description, likes, comments } = picture;
     const pictureElement = pictureTemplate.cloneNode(true);
@@ -25,6 +36,7 @@ function renderPictures(pictures) {
   });
 
   picturesList.appendChild(picuresListFragment);
+  filters.classList.remove('img-filters--inactive');
 }
 
 export {renderPictures};

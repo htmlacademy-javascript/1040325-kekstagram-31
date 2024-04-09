@@ -3,7 +3,8 @@ function validateMaxWordNumber(value, max) {
 }
 
 function validateRepeatHashtag(value) {
-  return value.split(' ').every((elem, idx, array) => array.indexOf(elem) === idx);
+  const valueLowerCase = value.toLowerCase();
+  return valueLowerCase.split(' ').every((elem, idx, array) => array.indexOf(elem) === idx);
 }
 
 Pristine.addValidator('max-word-number', validateMaxWordNumber, 'Количество слов должно быть меньше ${1}'); //eslint-disable-line

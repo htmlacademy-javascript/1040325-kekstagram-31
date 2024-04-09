@@ -24,7 +24,7 @@ function picturePreviewEditing(form) {
   const scaleSmallerButton = form.querySelector('.scale__control--smaller');
   const scaleBiggerButton = form.querySelector('.scale__control--bigger');
   const scaleValueElement = form.querySelector('.scale__control--value');
-  const previewPicture = form.querySelector('.img-upload__preview');
+  const previewPicture = form.querySelector('.img-upload__preview img');
   const sliderElement = form.querySelector('.effect-level__slider');
   const effectValueInput = form.querySelector('.effect-level__value');
   const effectsRadio = form.querySelectorAll('input[name = "effect"]');
@@ -84,9 +84,7 @@ function picturePreviewEditing(form) {
     sliderContainer.style.display = 'none';
   }
 
-  return {
-    resetSlider
-  };
+  return resetSlider;
 }
 
 export {picturePreviewEditing};
