@@ -15,7 +15,7 @@ clearCommentsList();
 
 function clickOutOfPictireHandler(evt) {
   if(!evt.target.closest('.big-picture__preview')) {
-    closeModal();
+    hideBigPicture();
   }
 }
 

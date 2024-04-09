@@ -15,7 +15,7 @@ const submitButton = formElement.querySelector('.img-upload__submit');
 
 const validator = createFormValidator(formElement);
 
-const {resetSlider} = picturePreviewEditing(formElement);
+const resetSlider = picturePreviewEditing(formElement);
 
 function resetForm() {
   resetSlider();
@@ -42,7 +42,6 @@ formElement.addEventListener('submit', (evt) => {
       });
   }
 });
-
 
 function escapeHandler() {
   const isInputFocused = Array.from(
@@ -72,6 +71,7 @@ function closePictureUploadForm() {
   document.body.classList.remove('modal-open');
   resetForm();
   escHotkey.destroy();
+  validator.reset();
 }
 
 imgUploadInput.addEventListener('change', () => openPictureUploadForm());
