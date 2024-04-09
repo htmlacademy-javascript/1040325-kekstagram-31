@@ -1,8 +1,9 @@
-import { picturePreviewEditing } from './picturePreviewEditing.js';
-import { createFormValidator } from './createFormValidator.js';
+import { picturePreviewEditing } from './picture-preview-editing.js';
+import { createFormValidator } from './create-form-validator.js';
 import { api } from '../api.js';
 import { showUploadFormNotification } from '../notifications.js';
-import { createHotkey } from '../hotkeyHandler.js';
+import { createHotkey } from '../hotkey-handler.js';
+import './picture-upload.js';
 
 const formElement = document.querySelector('.img-upload__form');
 const imgUploadInput = formElement.querySelector('.img-upload__input');

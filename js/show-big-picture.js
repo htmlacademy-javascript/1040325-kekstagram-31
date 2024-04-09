@@ -1,4 +1,4 @@
-import { createHotkey } from './hotkeyHandler.js';
+import { createHotkey } from './hotkey-handler.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureOverlay = document.querySelector('.big-picture.overlay');
