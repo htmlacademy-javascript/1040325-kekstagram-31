@@ -1,4 +1,4 @@
-import { noUiSliderSettings } from './noUiSliderSettings.js';
+import { noUiSliderSettings } from './noUiSlider-settings.js';
 
 function upscalePicture() {
   const scaleValues = [0.25, 0.5, 0.75, 1];

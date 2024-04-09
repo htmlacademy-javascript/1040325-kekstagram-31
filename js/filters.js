@@ -1,6 +1,6 @@
 import { getRandomArrayElement } from './utils.js';
 import { debounce } from './utils.js';
-import { renderPictures } from './renderPictures.js';
+import { renderPictures } from './render-pictures.js';
 
 const filterDefaultButtton = document.getElementById('filter-default');
 const filterRandomButtton = document.getElementById('filter-random');
