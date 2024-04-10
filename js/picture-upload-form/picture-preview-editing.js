@@ -1,20 +1,20 @@
 import { noUiSliderSettings } from './noUiSlider-settings.js';
 
 function upscalePicture() {
-  const scaleValues = [0.25, 0.5, 0.75, 1];
-  let i = scaleValues.length - 1;
+  const SCALE_VALUES = [0.25, 0.5, 0.75, 1];
+  let i = SCALE_VALUES.length - 1;
   return {
     upscale(){
-      if(i < scaleValues.length - 1) {
+      if(i < SCALE_VALUES.length - 1) {
         i += 1;
       }
-      return scaleValues[i];
+      return SCALE_VALUES[i];
     },
     downscale() {
       if (i > 0) {
         i -= 1;
       }
-      return scaleValues[i];
+      return SCALE_VALUES[i];
     },
   };
 }
