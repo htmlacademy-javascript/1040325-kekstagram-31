@@ -77,14 +77,15 @@ function picturePreviewEditing(form) {
     previewPicture.style.filter = noUiSliderSettings[sliderElement.dataset.selectedFilter]?.getFilterValue(value);
   });
 
-  function resetSlider() {
+  function reset() {
     sliderElement.noUiSlider.updateOptions(noUiSliderSettings.default.sliderOptions);
     previewPicture.style.filter = 'none';
     sliderElement.dataset.selectedFilter = 'none';
     sliderContainer.style.display = 'none';
+    previewPicture.style.transform = 'scale(1)';
   }
 
-  return resetSlider;
+  return reset;
 }
 
 export {picturePreviewEditing};

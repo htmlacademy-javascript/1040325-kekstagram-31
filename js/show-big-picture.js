@@ -60,10 +60,6 @@ function clearCommentsList() {
   commentsCountElement.textContent = 0;
 }
 
-function escapeHandler() {
-  hideBigPicture();
-}
-
 let escHotkey;
 
 function openModal() {
@@ -71,16 +67,14 @@ function openModal() {
   bigPicture.classList.remove('hidden');
   escHotkey = createHotkey({
     key: 'Escape',
-    handler: escapeHandler,
+    handler: hideBigPicture,
   });
-  bigPictureOverlay.addEventListener('click', clickOutOfPictireHandler);
 }
 
 function closeModal() {
   document.body.classList.remove('modal-open');
   bigPicture.classList.add('hidden');
   escHotkey.destroy();
-  bigPictureOverlay.removeEventListener('click', clickOutOfPictireHandler);
 }
 
 function showBigPicture(picture) {
@@ -96,5 +90,6 @@ function hideBigPicture() {
 
 commentsLoaderButton.addEventListener('click', () => showNextCommentsPage());
 closeButton.addEventListener('click', () => hideBigPicture());
+bigPictureOverlay.addEventListener('click', clickOutOfPictireHandler);
 
 export {showBigPicture};
