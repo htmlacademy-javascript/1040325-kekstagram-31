@@ -13,13 +13,14 @@ const addDescriptionForm = formElement.querySelector('.img-upload__text');
 const firstEffect = document.getElementById('effect-none');
 const submitButton = formElement.querySelector('.img-upload__submit');
 
+imgUploadInput.accept = '.jpg,.jpeg,.png';
 
 const validator = createFormValidator(formElement);
 
-const resetSlider = picturePreviewEditing(formElement);
+const resetPicturePreview = picturePreviewEditing(formElement);
 
 function resetForm() {
-  resetSlider();
+  resetPicturePreview();
   formElement.reset();
 }
 
