@@ -1,12 +1,14 @@
 import { createHotkey } from './hotkey-handler.js';
 
+const ERROR_DISPLAY_TIME = 5000;
+
 function showGetPicturesError() {
   const errorElementTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
   const errorElement = errorElementTemplate.cloneNode(true);
 
   document.body.appendChild(errorElement);
 
-  setTimeout(() => errorElement.remove(), 500);
+  setTimeout(() => errorElement.remove(), ERROR_DISPLAY_TIME);
 }
 
 function showUploadFormNotification(result) {
