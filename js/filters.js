@@ -5,6 +5,7 @@ import { renderPictures } from './render-pictures.js';
 const filterDefaultButtton = document.getElementById('filter-default');
 const filterRandomButtton = document.getElementById('filter-random');
 const filterDiscussedButtton = document.getElementById('filter-discussed');
+const RERENDER_DELAY = 500;
 
 function getRandomPictures(pictures) {
   const randomPictures = pictures.slice();
@@ -40,7 +41,7 @@ function filterPictures(pictures, type) {
 function renderPicturesFilter(pictures) {
   const filter = debounce((filterType) => {
     renderPictures(filterPictures(pictures, filterType));
-  }, 500);
+  }, RERENDER_DELAY);
 
   [filterDefaultButtton, filterRandomButtton, filterDiscussedButtton]
     .forEach((button) => {

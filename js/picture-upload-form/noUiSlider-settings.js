@@ -55,7 +55,7 @@ const noUiSliderSettings = {
     sliderOptions: {
       range: {
         min: 0,
-        max: 3, //px
+        max: 3,
       },
       start: 3,
       step: 0.1,
